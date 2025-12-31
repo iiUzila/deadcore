@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Deixa vazio por agora. A regra antiga já não funciona aqui.
+  // Deixa isto vazio para não dar erro de tipos
 };
 
 export default nextConfig;
