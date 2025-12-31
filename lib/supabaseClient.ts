@@ -1,9 +1,14 @@
 import { createClient } from '@supabase/supabase-js'
 
-// Tenta pegar a variável de ambiente. 
-// SE não existir (durante o build), usa uma string falsa para não dar erro.
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://lencoyvhrpnwqakxgqbp.supabase.co";
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "sb_publishable_C7svLkcXDJAeKt0UMscJwg_d82OhiMq";
+// 1. Pegamos as variáveis
+const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-// Cria o cliente com segurança
-export const supabase = createClient(supabaseUrl, supabaseKey);
+// 2. O TRUQUE DE SEGURANÇA:
+// Verificamos se elas existem. Se não existirem (durante o build), usamos valores falsos.
+// O 'createClient' precisa obrigatóriamente de texto, não pode receber 'undefined'.
+const finalUrl = url ? url : "https://lencoyvhrpnwqakxgqbp.supabase.co";
+const finalKey = key ? key : "sb_publishable_C7svLkcXDJAeKt0UMscJwg_d82OhiMq";
+
+// 3. Criamos o cliente
+export const supabase = createClient(finalUrl, finalKey);

@@ -1,10 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // A única coisa que vamos deixar aqui é a regra para ignorar erros no deploy
   eslint: {
+    // Permite o deploy mesmo com avisos pequenos
     ignoreDuringBuilds: true,
   },
+  // Se tiveres problemas com imagens de outros sites, adiciona isto depois:
+  // images: { domains: ['teu-site.com'] } 
 };
 
 export default nextConfig;
